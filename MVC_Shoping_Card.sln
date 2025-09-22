@@ -5,6 +5,10 @@ VisualStudioVersion = 17.14.36511.14 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_Shoping_Card", "MVC_Shoping_Card\MVC_Shoping_Card.csproj", "{986726FA-0822-467B-B87E-99E5D59B606E}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Shoping_Card_DB", "Shoping_Card_DB\Shoping_Card_DB.sqlproj", "{35AE4725-FC12-42CD-91FB-7FE97852015F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shoping_Card_DB_Connection", "Shoping_Card_DB_Connection\Shoping_Card_DB_Connection.csproj", "{5D3D7E93-9016-4A8D-B772-AA8799029CCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{986726FA-0822-467B-B87E-99E5D59B606E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{986726FA-0822-467B-B87E-99E5D59B606E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{986726FA-0822-467B-B87E-99E5D59B606E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35AE4725-FC12-42CD-91FB-7FE97852015F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35AE4725-FC12-42CD-91FB-7FE97852015F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35AE4725-FC12-42CD-91FB-7FE97852015F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{35AE4725-FC12-42CD-91FB-7FE97852015F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35AE4725-FC12-42CD-91FB-7FE97852015F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35AE4725-FC12-42CD-91FB-7FE97852015F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5D3D7E93-9016-4A8D-B772-AA8799029CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3D7E93-9016-4A8D-B772-AA8799029CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3D7E93-9016-4A8D-B772-AA8799029CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3D7E93-9016-4A8D-B772-AA8799029CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
