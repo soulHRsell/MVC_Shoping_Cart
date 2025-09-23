@@ -81,6 +81,7 @@
     <Build Include="dbo\Stored Procedures\Create_New_Category.sql" />
     <Build Include="dbo\Stored Procedures\UserPurchase.sql" />
     <Build Include="dbo\Stored Procedures\AdminSupportSet.sql" />
+    <Build Include="dbo\Stored Procedures\Get_AllProducts.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Shoping_Card_DB.publish.xml" />

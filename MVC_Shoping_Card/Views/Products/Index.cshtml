@@ -1,0 +1,29 @@
+﻿@model List<Shoping_Card_DB_Connection.Models.ProductsModel>
+
+@{
+    ViewData["title"] = "Products View";
+}
+
+<h1>@ViewData["title"]</h1>
+
+<table class="table">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Info</th>
+        <th>CategoryId</th>
+    </thead>
+    <tbody>
+        @foreach(var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Amount</td>
+                <td>@product.Info</td>
+                <td>@product.CategoryId</td>
+            </tr>
+        }
+    </tbody>
+</table>

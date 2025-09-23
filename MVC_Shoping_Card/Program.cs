@@ -33,19 +33,19 @@ namespace MVC_Shoping_Card
             app.Run();
         }
 
-        public static string GetConnectionString(string connectionStringName = "default")
-        {
-            string output = "";
+        //public static string GetConnectionString(string connectionStringName = "default")
+        //{
+        //    string output = "";
 
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");  
+        //    var builder = new ConfigurationBuilder()
+        //        .SetBasePath(Directory.GetCurrentDirectory())
+        //        .AddJsonFile("appsettings.json");  
 
-            var config = builder.Build();   
+        //    var config = builder.Build();   
 
-            output = config.GetConnectionString(connectionStringName);
+        //    output = config.GetConnectionString(connectionStringName);
 
-            return output;
-        }
+        //    return output;
+        //}
     }
 }
