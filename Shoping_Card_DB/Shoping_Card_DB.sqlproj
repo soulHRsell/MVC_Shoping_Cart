@@ -76,12 +76,12 @@
     <Build Include="dbo\Tables\AdminSupport.sql" />
     <Build Include="dbo\Views\ViewAllCategories.sql" />
     <Build Include="dbo\Views\ViewAllProducts.sql" />
-    <Build Include="dbo\Stored Procedures\Create_A_User.sql" />
-    <Build Include="dbo\Stored Procedures\Create_New_Product.sql" />
-    <Build Include="dbo\Stored Procedures\Create_New_Category.sql" />
-    <Build Include="dbo\Stored Procedures\UserPurchase.sql" />
-    <Build Include="dbo\Stored Procedures\AdminSupportSet.sql" />
-    <Build Include="dbo\Stored Procedures\Get_AllProducts.sql" />
+    <Build Include="dbo\Stored Procedures\SP_CreateUser.sql" />
+    <Build Include="dbo\Stored Procedures\SP_CreateNewProduct.sql" />
+    <Build Include="dbo\Stored Procedures\SP_CreateNewCategory.sql" />
+    <Build Include="dbo\Stored Procedures\SP_UserPurchase.sql" />
+    <Build Include="dbo\Stored Procedures\SP_AdminSupportSet.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GetAllProducts.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Shoping_Card_DB.publish.xml" />

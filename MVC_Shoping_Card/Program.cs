@@ -1,3 +1,6 @@
+using Shoping_Card_DB_Connection.DataAccess;
+using Shoping_Card_DB_Connection.Databases;
+
 namespace MVC_Shoping_Card
 {
     public class Program
@@ -8,6 +11,10 @@ namespace MVC_Shoping_Card
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Register your data access dependency
+            builder.Services.AddScoped<ISqlData, SqlData>();
+            builder.Services.AddScoped<ISqlDataAccess, SqlDataAccess>();
 
             var app = builder.Build();
 
