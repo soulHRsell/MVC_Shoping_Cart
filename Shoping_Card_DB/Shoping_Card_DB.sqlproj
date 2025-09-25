@@ -63,6 +63,7 @@
     <Folder Include="dbo\Views\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="PublishProfiles" />
+    <Folder Include="ComparisonProfile" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Address.sql" />
@@ -81,7 +82,6 @@
     <Build Include="dbo\Stored Procedures\SP_CreateNewCategory.sql" />
     <Build Include="dbo\Stored Procedures\SP_UserPurchase.sql" />
     <Build Include="dbo\Stored Procedures\SP_AdminSupportSet.sql" />
-    <Build Include="dbo\Stored Procedures\SP_GetAllProducts.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Shoping_Card_DB.publish.xml" />

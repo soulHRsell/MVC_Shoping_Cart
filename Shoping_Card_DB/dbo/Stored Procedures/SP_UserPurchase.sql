@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE UserPurchase
+CREATE PROCEDURE SP_UserPurchase
 	-- Add the parameters for the stored procedure here
 	@userId int,
 	@productName nvarchar(50)

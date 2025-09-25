@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE AdminSupportSet 
+CREATE PROCEDURE SP_AdminSupportSet 
 	-- Add the parameters for the stored procedure here
 	@adminId int,
 	@userName nvarchar(50)

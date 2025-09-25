@@ -14,16 +14,10 @@ namespace MVC_Shoping_Card.Controllers
         {
             _db = db;
         }
-        //private readonly ISqlData _db;
-        //private readonly ILogger<ProductsController> _logger;
-        //public ProductsController(ISqlData db)
-        //{
-        //    _db = db;
-        //}
-        // GET: ProducsController
+
         public ActionResult Index()
         {
-            List<ProductsModel> products = _db.GetProducts(); 
+            List<ProductsViewModel> products = _db.GetProducts(); 
             return View(products);
         }
 

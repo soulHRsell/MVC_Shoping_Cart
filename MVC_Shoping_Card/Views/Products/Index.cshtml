@@ -1,4 +1,4 @@
-﻿@model List<Shoping_Card_DB_Connection.Models.ProductsModel>
+﻿@model List<Shoping_Card_DB_Connection.Models.ProductsViewModel>
 
 @{
     ViewData["title"] = "Products View";
@@ -8,21 +8,19 @@
 
 <table class="table">
     <thead>
-        <th>Id</th>
+        <th>Category</th>
         <th>Name</th>
         <th>Amount</th>
         <th>Info</th>
-        <th>CategoryId</th>
     </thead>
     <tbody>
         @foreach(var product in Model)
         {
             <tr>
-                <td>@product.Id</td>
+                <td>@product.Category</td>
                 <td>@product.Name</td>
                 <td>@product.Amount</td>
                 <td>@product.Info</td>
-                <td>@product.CategoryId</td>
             </tr>
         }
     </tbody>

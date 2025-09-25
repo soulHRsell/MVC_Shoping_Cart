@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE Create_A_User
+CREATE PROCEDURE SP_CreateUser
 	-- Add the parameters for the stored procedure here
 	@username nvarchar(50),
 	@Password nvarchar(100),

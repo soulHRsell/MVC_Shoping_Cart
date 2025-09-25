@@ -16,6 +16,13 @@ namespace MVC_Shoping_Card
             builder.Services.AddScoped<ISqlData, SqlData>();
             builder.Services.AddScoped<ISqlDataAccess, SqlDataAccess>();
 
+            builder.Services.AddAuthentication("Cookies")
+                            .AddCookie("Cookies", options =>
+                            {
+                                options.LoginPath = "/Account/Login";
+                                options.AccessDeniedPath = "/Account/AccessDenied";
+                            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -39,20 +46,5 @@ namespace MVC_Shoping_Card
 
             app.Run();
         }
-
-        //public static string GetConnectionString(string connectionStringName = "default")
-        //{
-        //    string output = "";
-
-        //    var builder = new ConfigurationBuilder()
-        //        .SetBasePath(Directory.GetCurrentDirectory())
-        //        .AddJsonFile("appsettings.json");  
-
-        //    var config = builder.Build();   
-
-        //    output = config.GetConnectionString(connectionStringName);
-
-        //    return output;
-        //}
     }
 }

@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[Create_New_Category] 
+CREATE PROCEDURE [dbo].[SP_CreateNewCategory] 
 	-- Add the parameters for the stored procedure here
 	@adminId int,
 	@name nvarchar(50)

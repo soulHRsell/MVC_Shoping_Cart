@@ -18,12 +18,20 @@ namespace Shoping_Card_DB_Connection.DataAccess
             _db = db;
         }
 
-        public List<ProductsModel> GetProducts()
+        public List<ProductsViewModel> GetProducts()
         {
-            return _db.LoadData<ProductsModel, dynamic>("dbo.Get_AllProducts",
+            return _db.LoadData<ProductsViewModel, dynamic>("select * from ViewAllProducts",
                                                         new { },
                                                         connectionStringName,
-                                                        true);
+                                                        false);
+        }
+
+        public void Createuser(RegisterViewModel user)
+        {
+            _db.SaveData<dynamic>("dbo.SP_CreateUser",
+                                  new { user.Username, user.Password, user.EmailAddress, user.FirstName, user.LastName, user.Country, user.State, user.City, user.ZipCode, user.CardNumber },
+                                  connectionStringName,
+                                  true);
         }
     }
 }

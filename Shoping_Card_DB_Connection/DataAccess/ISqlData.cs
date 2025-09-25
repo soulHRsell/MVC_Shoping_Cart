@@ -4,6 +4,7 @@ namespace Shoping_Card_DB_Connection.DataAccess
 {
     public interface ISqlData
     {
-        List<ProductsModel> GetProducts();
+        void Createuser(RegisterViewModel user);
+        List<ProductsViewModel> GetProducts();
     }
 }

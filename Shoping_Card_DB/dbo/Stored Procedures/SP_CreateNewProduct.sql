@@ -1,4 +1,4 @@
-﻿CREATE procedure [dbo].[Create_New_Product]
+﻿CREATE procedure [dbo].[SP_CreateNewProduct]
 	@adminId int,
 	@name nvarchar(50),
 	@amount int,
