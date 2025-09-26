@@ -6,5 +6,6 @@ namespace Shoping_Card_DB_Connection.DataAccess
     {
         void Createuser(RegisterViewModel user);
         List<ProductsViewModel> GetProducts();
+        List<UserAuthoModel> GetUserByUsername(string username);
     }
 }

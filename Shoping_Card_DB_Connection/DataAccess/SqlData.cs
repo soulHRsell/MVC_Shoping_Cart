@@ -18,6 +18,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
             _db = db;
         }
 
+        public List<UserAuthoModel> GetUserByUsername(string username)
+        {
+            return _db.LoadData<UserAuthoModel, dynamic>("dbo.SP_GetUserByUsername",
+                                                         new { username },
+                                                         connectionStringName,
+                                                         true);
+        }
+
         public List<ProductsViewModel> GetProducts()
         {
             return _db.LoadData<ProductsViewModel, dynamic>("select * from ViewAllProducts",
