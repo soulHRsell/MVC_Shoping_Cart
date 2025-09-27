@@ -37,27 +37,13 @@ namespace MVC_Shoping_Card.Controllers
             return View();
         }
 
-        // GET: AccountController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: AccountController/Create for Register
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
             if(ModelState.IsValid)
-            {
-                //byte[] salt = RandomNumberGenerator.GetBytes(128 / 8);
-                //string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                //    password: model.Password!,
-                //    salt: salt,
-                //    prf: KeyDerivationPrf.HMACSHA256,
-                //    iterationCount: 100000,
-                //    numBytesRequested: 256/8));
-
+            { 
                 var user = new RegisterViewModel
                 {
                     Username = model.Username,
@@ -84,7 +70,7 @@ namespace MVC_Shoping_Card.Controllers
         // POST: AccountController/Create for Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public async Task<ActionResult> Login(LoginViewModel model, bool rememberMe)
         {
             var user = _db.GetUserByUsername(model.Username);
 
@@ -100,13 +86,27 @@ namespace MVC_Shoping_Card.Controllers
                 var identity = new ClaimsIdentity(claims, "Cookies");
                 var principal = new ClaimsPrincipal(identity);
 
-                HttpContext.SignInAsync("Cookies", principal);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = rememberMe,
+                    ExpiresUtc = DateTime.UtcNow.AddHours(2)
+                };
+
+                await HttpContext.SignInAsync("Cookies", principal, authProperties);
 
                 return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("", "Invalid login attempt.");
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync("Cookies");
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: AccountController/Edit/5

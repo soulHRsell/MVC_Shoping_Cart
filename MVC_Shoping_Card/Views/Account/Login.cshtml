@@ -11,9 +11,16 @@
         <label asp-for="Username"></label>
         <input asp-for="Username" class="form-control"/>
     </div>
+
     <div class="form-group">
         <label>Password</label>
         <input asp-for="Password" type="password" class="form-control" />
     </div>
+
+    <div class="form-check">
+        <input asp-for="RememberMe" class="form-check-input" />
+        <label asp-for="RememberMe" class="form-check-label"></label>
+    </div>
+
     <button type="submit">Login</button>
 </form>
