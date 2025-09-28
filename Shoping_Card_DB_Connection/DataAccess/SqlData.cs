@@ -34,7 +34,7 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                         false);
         }
 
-        public void Createuser(RegisterViewModel user)
+        public void Createuser(RegisterModel user)
         {
             _db.SaveData<dynamic>("dbo.SP_CreateUser",
                                   new { user.Username, user.Password, user.EmailAddress, user.FirstName, user.LastName, user.Country, user.State, user.City, user.ZipCode, user.CardNumber },

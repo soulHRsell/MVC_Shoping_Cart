@@ -45,7 +45,7 @@ namespace MVC_Shoping_Card.Controllers
         {
             if(ModelState.IsValid)
             { 
-                var user = new RegisterViewModel
+                var user = new RegisterModel
                 {
                     Username = model.Username,
                     Password = BCrypt.Net.BCrypt.HashPassword(model.Password),

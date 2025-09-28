@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MVC_Shoping_Card.Models;
 using Shoping_Card_DB_Connection.DataAccess;
-using Shoping_Card_DB_Connection.Databases;
 using Shoping_Card_DB_Connection.Models;
 
 namespace MVC_Shoping_Card.Controllers
@@ -17,7 +16,17 @@ namespace MVC_Shoping_Card.Controllers
 
         public ActionResult Index()
         {
-            List<ProductsModel> products = _db.GetProducts(); 
+            List<ProductsModel> dbproducts = _db.GetProducts();
+            List<ProductsViewModel> products = new List<ProductsViewModel>();
+            for (int i = 0; i < dbproducts.Count; i++)
+            {
+                ProductsViewModel product = new ProductsViewModel();
+                product.Category = dbproducts[i].Category;
+                product.Name = dbproducts[i].Name;
+                product.Amount = dbproducts[i].Amount;
+                product.Info = dbproducts[i].Info;
+                products.Add(product);
+            }
             return View(products);
         }
 
