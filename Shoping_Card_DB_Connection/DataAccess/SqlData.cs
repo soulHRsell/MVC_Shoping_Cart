@@ -41,5 +41,13 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                   connectionStringName,
                                   true);
         }
+
+        public void CreateCategory(CategoryCreateModel category)
+        {
+            _db.SaveData<dynamic>("SP_CreateNewCategory",
+                                  new { category.AdminId, category.Name },
+                                  connectionStringName,
+                                  true);
+        }
     }
 }

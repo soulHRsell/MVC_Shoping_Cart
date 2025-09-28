@@ -79,8 +79,9 @@ namespace MVC_Shoping_Card.Controllers
             {
                 var claims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.NameIdentifier, user[0].Id.ToString()),
                     new Claim(ClaimTypes.Name, user[0].Username),
-                    new Claim(ClaimTypes.Role, user[0].isAdmin ? "Admin" : "User")
+                    new Claim(ClaimTypes.Role, user[0].IsAdmin ? "Admin" : "User")
                 };
 
                 var identity = new ClaimsIdentity(claims, "Cookies");

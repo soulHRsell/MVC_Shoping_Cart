@@ -5,7 +5,7 @@ begin
 	
 	set nocount on;
 
-	select u.Username, u.[Password], u.isAdmin
+	select u.ID, u.Username, u.[Password], u.isAdmin
 	from [User] u
 	where u.Username = @username
 	
