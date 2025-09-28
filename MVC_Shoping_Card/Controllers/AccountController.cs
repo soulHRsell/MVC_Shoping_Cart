@@ -6,6 +6,7 @@ using Shoping_Card_DB_Connection.DataAccess;
 using Shoping_Card_DB_Connection.Models;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
+using MVC_Shoping_Card.Models;
 using System.Security.Cryptography;
 
 namespace MVC_Shoping_Card.Controllers

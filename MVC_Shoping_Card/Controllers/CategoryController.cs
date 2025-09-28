@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shoping_Card_DB_Connection.Models;
 using Shoping_Card_DB_Connection.DataAccess;
 using System.Security.Claims;
+using MVC_Shoping_Card.Models;
 
 namespace MVC_Shoping_Card.Controllers
 {

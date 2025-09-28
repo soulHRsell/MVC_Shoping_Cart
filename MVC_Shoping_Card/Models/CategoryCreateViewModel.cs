@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shoping_Card_DB_Connection.Models
+namespace MVC_Shoping_Card.Models
 {
     public class CategoryCreateViewModel
     {

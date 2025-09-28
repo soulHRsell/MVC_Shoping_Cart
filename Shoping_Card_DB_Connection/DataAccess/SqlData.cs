@@ -26,9 +26,9 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                          true);
         }
 
-        public List<ProductsViewModel> GetProducts()
+        public List<ProductsModel> GetProducts()
         {
-            return _db.LoadData<ProductsViewModel, dynamic>("select * from ViewAllProducts",
+            return _db.LoadData<ProductsModel, dynamic>("select * from ViewAllProducts",
                                                         new { },
                                                         connectionStringName,
                                                         false);
