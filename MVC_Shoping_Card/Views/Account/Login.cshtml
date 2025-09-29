@@ -4,23 +4,30 @@
     ViewData["title"] = "Login";
 }
 
-<h1>Login</h1>
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">@ViewData["title"]</h2>
 
-<form asp-action="Login" method="post">
-    <div class="mb-2">
-        <label asp-for="Username"></label>
-        <input asp-for="Username" class="form-control" />
+            <form asp-action="Login" method="post">
+                <div class="mb-3">
+                    <label asp-for="Username"></label>
+                    <input asp-for="Username" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Password</label>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label"></label>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+
+        </div>
     </div>
-
-    <div class="mb-2">
-        <label>Password</label>
-        <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
-    </div>
-
-    <div class="mb-2 form-check">
-        <input asp-for="RememberMe" class="form-check-input" />
-        <label asp-for="RememberMe" class="form-check-label"></label>
-    </div>
-
-    <button type="submit">Login</button>
-</form>
+</div>

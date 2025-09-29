@@ -1,6 +1,6 @@
-﻿namespace MVC_Shoping_Card.Models
+﻿namespace Shoping_Card_DB_Connection.Models
 {
-    public class ProductsViewModel
+    public class ProductModel
     {
         public string Category { get; set; }
         public string Name { get; set; }

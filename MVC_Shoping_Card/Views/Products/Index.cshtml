@@ -4,24 +4,31 @@
     ViewData["title"] = "Products";
 }
 
-<h1>@ViewData["title"]</h1>
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">@ViewData["title"]</h2>
 
-<table class="table">
-    <thead>
-        <th>Category</th>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Info</th>
-    </thead>
-    <tbody>
-        @foreach(var product in Model)
-        {
-            <tr>
-                <td>@product.Category</td>
-                <td>@product.Name</td>
-                <td>@product.Amount</td>
-                <td>@product.Info</td>
-            </tr>
-        }
-    </tbody>
-</table>
+            <table class="table">
+                <thead>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Info</th>
+                </thead>
+                <tbody>
+                    @foreach(var product in Model)
+                    {
+                        <tr>
+                            <td>@product.Category</td>
+                            <td>@product.Name</td>
+                            <td>@product.Amount</td>
+                            <td>@product.Info</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

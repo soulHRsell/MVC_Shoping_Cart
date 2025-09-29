@@ -1,10 +1,5 @@
 ﻿using Shoping_Card_DB_Connection.Databases;
 using Shoping_Card_DB_Connection.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shoping_Card_DB_Connection.DataAccess
 {
@@ -26,15 +21,15 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                          true);
         }
 
-        public List<ProductsModel> GetProducts()
+        public List<ProductModel> GetProducts()
         {
-            return _db.LoadData<ProductsModel, dynamic>("select * from ViewAllProducts",
+            return _db.LoadData<ProductModel, dynamic>("select * from ViewAllProducts",
                                                         new { },
                                                         connectionStringName,
                                                         false);
         }
 
-        public void Createuser(RegisterModel user)
+        public void Createuser(UserModel user)
         {
             _db.SaveData<dynamic>("dbo.SP_CreateUser",
                                   new { user.Username, user.Password, user.EmailAddress, user.FirstName, user.LastName, user.Country, user.State, user.City, user.ZipCode, user.CardNumber },

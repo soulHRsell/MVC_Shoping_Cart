@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MVC_Shoping_Card.Models;
 using Shoping_Card_DB_Connection.DataAccess;
 using Shoping_Card_DB_Connection.Models;
-using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
-using MVC_Shoping_Card.Models;
-using System.Security.Cryptography;
 
 namespace MVC_Shoping_Card.Controllers
 {
@@ -29,7 +25,7 @@ namespace MVC_Shoping_Card.Controllers
         // GET: AccountController for Login
         public ActionResult Login()
         {
-            return View();  
+            return View();
         }
 
         // GET: AccountController/Details/5
@@ -43,24 +39,24 @@ namespace MVC_Shoping_Card.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
-            if(ModelState.IsValid)
-            { 
-                var user = new RegisterModel
+            if (ModelState.IsValid)
+            {
+                var user = new UserModel
                 {
                     Username = model.Username,
                     Password = BCrypt.Net.BCrypt.HashPassword(model.Password),
                     EmailAddress = model.EmailAddress,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Country = model.Country,    
-                    State = model.State,    
+                    Country = model.Country,
+                    State = model.State,
                     City = model.City,
                     ZipCode = model.ZipCode,
                     CardNumber = model.CardNumber,
                 };
 
-                _db.Createuser(user);   
-                return RedirectToAction(nameof(Login));  
+                _db.Createuser(user);
+                return RedirectToAction(nameof(Login));
             }
             else
             {

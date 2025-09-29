@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shoping_Card_DB_Connection.Models;
-using Shoping_Card_DB_Connection.DataAccess;
-using System.Security.Claims;
 using MVC_Shoping_Card.Models;
+using Shoping_Card_DB_Connection.DataAccess;
+using Shoping_Card_DB_Connection.Models;
+using System.Security.Claims;
 
 namespace MVC_Shoping_Card.Controllers
 {
@@ -45,7 +44,7 @@ namespace MVC_Shoping_Card.Controllers
         {
             if (ModelState.IsValid)
             {
-                CategoryCreateModel cat = new CategoryCreateModel();    
+                CategoryCreateModel cat = new CategoryCreateModel();
                 cat.AdminId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
                 cat.Name = model.Name;
                 _db.CreateCategory(cat);

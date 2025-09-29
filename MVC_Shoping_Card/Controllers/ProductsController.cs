@@ -16,7 +16,7 @@ namespace MVC_Shoping_Card.Controllers
 
         public ActionResult Index()
         {
-            List<ProductsModel> dbproducts = _db.GetProducts();
+            List<ProductModel> dbproducts = _db.GetProducts();
             List<ProductsViewModel> products = new List<ProductsViewModel>();
             for (int i = 0; i < dbproducts.Count; i++)
             {

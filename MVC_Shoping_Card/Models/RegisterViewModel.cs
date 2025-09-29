@@ -13,6 +13,9 @@ namespace MVC_Shoping_Card.Models
         public string Username { get; set; }
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Passwords do not match.")]
+        public string ConfirmPassword { get; set; }
         [Required, EmailAddress]
         public string EmailAddress { get; set; }
         public string FirstName { get; set; }
