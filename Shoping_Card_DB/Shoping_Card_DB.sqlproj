@@ -87,5 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Shoping_Card_DB.publish.xml" />
+    <None Include="ComparisonProfile\SqlSchemaCompare.scmp" />
   </ItemGroup>
 </Project>
