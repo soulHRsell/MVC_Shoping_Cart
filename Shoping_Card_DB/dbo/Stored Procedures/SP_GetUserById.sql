@@ -9,5 +9,6 @@ begin
 	from [User] u
 	inner join [Address] a on u.AddressId = a.ID
 	inner join CreditCard c on u.CreditCardId = c.ID
+	where u.ID = @Id
 
 end

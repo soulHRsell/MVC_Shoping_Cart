@@ -108,24 +108,48 @@ namespace MVC_Shoping_Card.Controllers
         }
 
         // GET: AccountController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            return View();
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<UserModel> dbuser = _db.GetUserById(Int32.Parse(userId));
+
+            UserEditViewModel user = new UserEditViewModel();
+            user.Username = dbuser[0].Username;
+            user.EmailAddress = dbuser[0].EmailAddress;
+            user.FirstName = dbuser[0].FirstName;
+            user.LastName = dbuser[0].LastName;
+            user.Country = dbuser[0].Country;
+            user.State = dbuser[0].State;
+            user.City = dbuser[0].City;
+            user.ZipCode = dbuser[0].ZipCode;
+            user.CardNumber = dbuser[0].CardNumber;
+
+            return View(user);
         }
 
         // POST: AccountController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(RegisterViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                int userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                UserEditModel editedUser = new UserEditModel();
+                editedUser.Username = model.Username;   
+                editedUser.EmailAddress = model.EmailAddress;
+                editedUser.FirstName = model.FirstName; 
+                editedUser.LastName = model.LastName;   
+                editedUser.Country = model.Country; 
+                editedUser.State = model.State; 
+                editedUser.City = model.City;   
+                editedUser.ZipCode = model.ZipCode; 
+                editedUser.CardNumber = model.CardNumber;
+
+                _db.EditUserInfo(userId, editedUser);
+                return RedirectToAction("Index", "Home");   
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: AccountController/Delete/5

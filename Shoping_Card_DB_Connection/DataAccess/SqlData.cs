@@ -13,6 +13,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
             _db = db;
         }
 
+        public List<UserModel> GetUserById(int Id)
+        {
+            return _db.LoadData<UserModel, dynamic>("SP_GetUserById",
+                                new { Id },
+                                connectionStringName,
+                                true);
+        }
+
         public List<UserAuthoModel> GetUserByUsername(string username)
         {
             return _db.LoadData<UserAuthoModel, dynamic>("dbo.SP_GetUserByUsername",
@@ -41,6 +49,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
         {
             _db.SaveData<dynamic>("SP_CreateNewCategory",
                                   new { category.AdminId, category.Name },
+                                  connectionStringName,
+                                  true);
+        }
+
+        public void EditUserInfo(int Id, UserEditModel user)
+        {
+            _db.SaveData<dynamic>("SP_EditUserInfo",
+                                  new { Id, user.Username, user.EmailAddress, user.FirstName, user.LastName, user.Country, user.State, user.City, user.ZipCode, user.CardNumber },
                                   connectionStringName,
                                   true);
         }

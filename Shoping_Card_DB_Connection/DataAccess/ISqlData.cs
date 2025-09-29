@@ -6,7 +6,9 @@ namespace Shoping_Card_DB_Connection.DataAccess
     {
         void CreateCategory(CategoryCreateModel category);
         void Createuser(UserModel user);
+        void EditUserInfo(int Id, UserEditModel user);
         List<ProductModel> GetProducts();
+        List<UserModel> GetUserById(int Id);
         List<UserAuthoModel> GetUserByUsername(string username);
     }
 }

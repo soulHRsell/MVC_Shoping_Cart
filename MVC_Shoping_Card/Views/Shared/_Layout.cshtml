@@ -70,9 +70,21 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">All Products</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Create">CreateCategory</a>
-                        </li>
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Create">Create Category</a>
+                            </li>
+                        }
+                        
+
+                        @if(User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Edit">Edit Profile</a>
+                            </li>
+                        }
+                        
                         
                     </ul>
                 </div>

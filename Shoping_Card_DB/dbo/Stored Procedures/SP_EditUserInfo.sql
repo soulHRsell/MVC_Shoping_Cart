@@ -1,7 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SP_EditUserInfo]
 	@Id int,
 	@username nvarchar(50),
-	@Password nvarchar(100),
 	@EmailAddress nvarchar(100),
 	@firstname nvarchar(50),
 	@lastname nvarchar(50),
@@ -31,7 +30,7 @@ begin
 	where ID = @creditCard
 
 	Update [User]
-	set Username = @username, [Password] = @Password, EmailAddress = @EmailAddress, FirstName = @firstname, LastName = @lastname
+	set Username = @username, EmailAddress = @EmailAddress, FirstName = @firstname, LastName = @lastname
 	where ID = @Id
 
 end

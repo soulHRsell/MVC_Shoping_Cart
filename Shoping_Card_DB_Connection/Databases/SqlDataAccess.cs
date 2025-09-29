@@ -17,12 +17,12 @@ namespace Shoping_Card_DB_Connection.Databases
         public List<T> LoadData<T, U>(string sqlStatement,
                                      U parameters,
                                      string connectionStringName,
-                                     bool isStoredProcidure)
+                                     bool isStoredProcedure)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
             CommandType commandType = CommandType.Text;
 
-            if (isStoredProcidure == true)
+            if (isStoredProcedure == true)
                 commandType = CommandType.StoredProcedure;
 
             using (IDbConnection connection = new SqlConnection(connectionString))
@@ -32,12 +32,15 @@ namespace Shoping_Card_DB_Connection.Databases
             }
         }
 
-        public void SaveData<T>(string sqlstatement, T parameters, string connectionStringName, bool isStoredProcidure)
+        public void SaveData<T>(string sqlstatement,
+                                T parameters,
+                                string connectionStringName,
+                                bool isStoredProcedure)
         {
             string connectionString = _config.GetConnectionString(connectionStringName);
             CommandType commandType = CommandType.Text;
 
-            if (isStoredProcidure == true)
+            if (isStoredProcedure == true)
             {
                 commandType = CommandType.StoredProcedure;
             }
