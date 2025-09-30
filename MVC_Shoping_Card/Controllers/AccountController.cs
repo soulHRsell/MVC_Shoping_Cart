@@ -69,16 +69,15 @@ namespace MVC_Shoping_Card.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, bool rememberMe)
         {
-            var user = _db.GetUserByUsername(model.Username);
+            var user = _db.GetUserByUsername(model.Username).FirstOrDefault();
 
-
-            if (user.Count != 0 && BCrypt.Net.BCrypt.Verify(model.Password, user[0].Password))
+            if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.Password))
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user[0].Id.ToString()),
-                    new Claim(ClaimTypes.Name, user[0].Username),
-                    new Claim(ClaimTypes.Role, user[0].IsAdmin ? "Admin" : "User")
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
                 };
 
                 var identity = new ClaimsIdentity(claims, "Cookies");
@@ -111,18 +110,23 @@ namespace MVC_Shoping_Card.Controllers
         public ActionResult Edit()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            List<UserModel> dbuser = _db.GetUserById(Int32.Parse(userId));
+            UserModel dbuser = _db.GetUserById(Int32.Parse(userId)).FirstOrDefault();
+
+            if(dbuser == null)
+            {
+                return NotFound();
+            }
 
             UserEditViewModel user = new UserEditViewModel();
-            user.Username = dbuser[0].Username;
-            user.EmailAddress = dbuser[0].EmailAddress;
-            user.FirstName = dbuser[0].FirstName;
-            user.LastName = dbuser[0].LastName;
-            user.Country = dbuser[0].Country;
-            user.State = dbuser[0].State;
-            user.City = dbuser[0].City;
-            user.ZipCode = dbuser[0].ZipCode;
-            user.CardNumber = dbuser[0].CardNumber;
+            user.Username = dbuser.Username;
+            user.EmailAddress = dbuser.EmailAddress;
+            user.FirstName = dbuser.FirstName;
+            user.LastName = dbuser.LastName;
+            user.Country = dbuser.Country;
+            user.State = dbuser.State;
+            user.City = dbuser.City;
+            user.ZipCode = dbuser.ZipCode;
+            user.CardNumber = dbuser.CardNumber;
 
             return View(user);
         }
@@ -130,7 +134,7 @@ namespace MVC_Shoping_Card.Controllers
         // POST: AccountController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RegisterViewModel model)
+        public ActionResult Edit(UserEditViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -149,7 +153,7 @@ namespace MVC_Shoping_Card.Controllers
                 _db.EditUserInfo(userId, editedUser);
                 return RedirectToAction("Index", "Home");   
             }
-            return View();
+            return View(model);
         }
 
         // GET: AccountController/Delete/5

@@ -1,73 +1,75 @@
 ﻿@model UserEditViewModel
 @{
-    ViewData["title"] = "Edit Profile";
+    ViewData["Title"] = "Edit Profile";
 }
 
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2 class="mb-4">@ViewData["title"]</h2>
+            <h2 class="mb-4 text-center">@ViewData["Title"]</h2>
 
             <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                 <div class="mb-3">
-                    <label asp-for="Username"></label>
-                    <input asp-for="Username" class="form-control" value="@Model.Username"/>
+                    <label asp-for="Username" class="form-label"></label>
+                    <input asp-for="Username" class="form-control" />
                     <span asp-validation-for="Username" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="EmailAddress"></label>
-                    <input asp-for="EmailAddress" class="form-control" value="@Model.Username" />
+                    <label asp-for="EmailAddress" class="form-label"></label>
+                    <input asp-for="EmailAddress" class="form-control" />
                     <span asp-validation-for="EmailAddress" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="FirstName"></label>
-                    <input asp-for="FirstName" class="form-control" value="@Model.FirstName" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="FirstName" class="form-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LastName" class="form-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Country" class="form-label"></label>
+                        <input asp-for="Country" class="form-control" />
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="State" class="form-label"></label>
+                        <input asp-for="State" class="form-control" />
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="City" class="form-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="ZipCode" class="form-label"></label>
+                        <input asp-for="ZipCode" class="form-control" />
+                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="LastName"></label>
-                    <input asp-for="LastName" class="form-control" value="@Model.LastName" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="Country"></label>
-                    <input asp-for="Country" class="form-control" />
-                    <span asp-validation-for="Country" class="text-danger" value="@Model.Country"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="State"></label>
-                    <input asp-for="State" class="form-control" value="@Model.State" />
-                    <span asp-validation-for="State" class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="City"></label>
-                    <input asp-for="City" class="form-control" value="@Model.City" />
-                    <span asp-validation-for="City" class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="ZipCode"></label>
-                    <input asp-for="ZipCode" class="form-control" value="@Model.ZipCode" />
-                    <span asp-validation-for="ZipCode" class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="CardNumber"></label>
-                    <input asp-for="CardNumber" class="form-control" value="@Model.CardNumber" />
+                    <label asp-for="CardNumber" class="form-label"></label>
+                    <input asp-for="CardNumber" class="form-control" />
                     <span asp-validation-for="CardNumber" class="text-danger"></span>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Create</button>
-
+                <button type="submit" class="btn btn-primary w-100">Save Changes</button>
             </form>
-
         </div>
     </div>
 </div>
