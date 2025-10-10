@@ -37,6 +37,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                         false);
         }
 
+        public List<CategoryModel> GetAllCategories()
+        {
+            return _db.LoadData<CategoryModel, dynamic>("select * from ViewAllCategories",
+                                                        new { },
+                                                        connectionStringName,
+                                                        false);
+        }
+
         public void Createuser(UserModel user)
         {
             _db.SaveData<dynamic>("dbo.SP_CreateUser",

@@ -1,7 +1,7 @@
 ﻿CREATE VIEW dbo.ViewAllCategories
 AS
-SELECT Name
-FROM     dbo.Category AS ca
+SELECT ca.ID, ca.[Name]
+FROM     dbo.Category ca
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane1', @value = N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]

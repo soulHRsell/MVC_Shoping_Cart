@@ -20,13 +20,18 @@ namespace MVC_Shoping_Card.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            return View();
-        }
-
-        // GET: CategoryController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            var categories = _db.GetAllCategories();
+            List<CategoryViewModel> categoriesView = new List<CategoryViewModel>();
+            for (int i = 0; i < categories.Count; i++)
+            {
+                CategoryViewModel cat = new CategoryViewModel()
+                {
+                    Id = categories[i].Id,
+                    Name = categories[i].Name,  
+                };
+                categoriesView.Add(cat); 
+            }
+            return View(categoriesView);
         }
 
         // GET: CategoryController/Create
@@ -58,6 +63,7 @@ namespace MVC_Shoping_Card.Controllers
         }
 
         // GET: CategoryController/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             return View();
@@ -80,6 +86,7 @@ namespace MVC_Shoping_Card.Controllers
         }
 
         // GET: CategoryController/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View();
