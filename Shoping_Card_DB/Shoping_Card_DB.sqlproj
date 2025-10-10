@@ -73,7 +73,6 @@
     <Build Include="dbo\Tables\Product.sql" />
     <Build Include="dbo\Tables\Purchase.sql" />
     <Build Include="dbo\Tables\AdminProductSet.sql" />
-    <Build Include="dbo\Tables\AdminCategorySet.sql" />
     <Build Include="dbo\Tables\AdminSupport.sql" />
     <Build Include="dbo\Views\ViewAllCategories.sql" />
     <Build Include="dbo\Views\ViewAllProducts.sql" />
@@ -86,6 +85,9 @@
     <Build Include="dbo\Stored Procedures\SP_GetUserByUsername.sql" />
     <Build Include="dbo\Stored Procedures\SP_GetUserById.sql" />
     <Build Include="dbo\Stored Procedures\SP_EditUserInfo.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GetCategoryById.sql" />
+    <Build Include="dbo\Stored Procedures\SP_DeleteCategory.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EditCategoryById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Shoping_Card_DB.publish.xml" />

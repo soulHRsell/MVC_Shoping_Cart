@@ -13,16 +13,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	declare @category int;
-
     -- Insert statements for procedure here
-	insert into Category([Name]) values (@name)
-
-	select @category = c.ID
-	from Category c
-	where c.[Name] = @name
-
-	insert into AdminCategorySet(CategorySetDate, AdminId, CategoryId)
-	values (GETDATE(), @adminId, @category)
+	insert into Category([Name], [AdminId]) values (@name, @adminId)
 
 END

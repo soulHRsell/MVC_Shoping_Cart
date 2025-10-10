@@ -54,7 +54,7 @@ namespace MVC_Shoping_Card.Controllers
                 cat.Name = model.Name;
                 _db.CreateCategory(cat);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -66,30 +66,50 @@ namespace MVC_Shoping_Card.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
-            return View();
+            var category = _db.GetCategoryById(id).FirstOrDefault();
+            CategoryViewModel categoryView = new CategoryViewModel()
+            {
+                Id = category.Id,
+                Name = category.Name,   
+            };
+            
+            return View(categoryView);
         }
 
         // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(CategoryViewModel model, IFormCollection collection)
         {
-            try
+            if(ModelState.IsValid)
             {
+                CategoryModel category = new CategoryModel()
+                {
+                    Id = model.Id,  
+                    Name = model.Name,  
+                };
+
+                _db.EditCategory(category);
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
+                
         }
 
         // GET: CategoryController/Delete/5
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
-            return View();
+            var category = _db.GetCategoryById(id).FirstOrDefault(); 
+            CategoryViewModel categoryview = new CategoryViewModel()
+            {
+                Id = category.Id,
+                Name = category.Name    
+            };   
+
+            return View(categoryview);
         }
 
         // POST: CategoryController/Delete/5
@@ -98,14 +118,17 @@ namespace MVC_Shoping_Card.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
+            var category = _db.GetCategoryById(id).FirstOrDefault();
+
+            if(category == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+           
+            _db.DeleteCategory(category.Id);
+            return RedirectToAction(nameof(Index));
+            
+
         }
     }
 }

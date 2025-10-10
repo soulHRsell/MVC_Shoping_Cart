@@ -45,10 +45,26 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                         false);
         }
 
+        public List<CategoryModel> GetCategoryById(int Id)
+        {
+            return _db.LoadData<CategoryModel, dynamic>("SP_GetCategoryById",
+                                                        new { Id },
+                                                        connectionStringName,
+                                                        true);
+        }
+
         public void Createuser(UserModel user)
         {
             _db.SaveData<dynamic>("dbo.SP_CreateUser",
                                   new { user.Username, user.Password, user.EmailAddress, user.FirstName, user.LastName, user.Country, user.State, user.City, user.ZipCode, user.CardNumber },
+                                  connectionStringName,
+                                  true);
+        }
+
+        public void EditUserInfo(int Id, UserEditModel user)
+        {
+            _db.SaveData<dynamic>("SP_EditUserInfo",
+                                  new { Id, user.Username, user.EmailAddress, user.FirstName, user.LastName, user.Country, user.State, user.City, user.ZipCode, user.CardNumber },
                                   connectionStringName,
                                   true);
         }
@@ -61,10 +77,18 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                   true);
         }
 
-        public void EditUserInfo(int Id, UserEditModel user)
+        public void EditCategory(CategoryModel category)
         {
-            _db.SaveData<dynamic>("SP_EditUserInfo",
-                                  new { Id, user.Username, user.EmailAddress, user.FirstName, user.LastName, user.Country, user.State, user.City, user.ZipCode, user.CardNumber },
+            _db.SaveData<dynamic>("SP_EditCategoryById",
+                                  new { category.Id, category.Name },
+                                  connectionStringName,
+                                  true);
+        }
+
+        public void DeleteCategory(int Id)
+        {
+            _db.SaveData<dynamic>("SP_DeleteCategory",
+                                  new { Id },
                                   connectionStringName,
                                   true);
         }
