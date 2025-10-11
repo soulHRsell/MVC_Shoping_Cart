@@ -8,7 +8,7 @@ namespace Shoping_Card_DB_Connection.DataAccess
         void Createuser(UserModel user);
         void DeleteCategory(int Id);
         void EditCategory(CategoryModel category);
-        void EditUserInfo(int Id, UserEditModel user);
+        void EditUserInfo(int Id, UserModel user);
         List<CategoryModel> GetAllCategories();
         List<CategoryModel> GetCategoryById(int Id);
         List<CategoryModel> GetCategoryByName(string name);

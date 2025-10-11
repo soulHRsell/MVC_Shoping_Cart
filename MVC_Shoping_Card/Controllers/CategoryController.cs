@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using MVC_Shoping_Card.Models;
 using Shoping_Card_DB_Connection.DataAccess;
 using Shoping_Card_DB_Connection.Models;
@@ -28,9 +27,9 @@ namespace MVC_Shoping_Card.Controllers
                 CategoryViewModel cat = new CategoryViewModel()
                 {
                     Id = categories[i].Id,
-                    Name = categories[i].Name,  
+                    Name = categories[i].Name,
                 };
-                categoriesView.Add(cat); 
+                categoriesView.Add(cat);
             }
             return View(categoriesView);
         }
@@ -51,9 +50,9 @@ namespace MVC_Shoping_Card.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var dublicate = _db.GetCategoryByName(model.Name);  
+            var dublicate = _db.GetCategoryByName(model.Name);
 
-            if(dublicate.Count > 0)
+            if (dublicate.Count > 0)
             {
                 ModelState.AddModelError("Name", "This category name already exists.");
                 return View(model);
@@ -72,9 +71,9 @@ namespace MVC_Shoping_Card.Controllers
             CategoryViewModel categoryView = new CategoryViewModel()
             {
                 Id = category.Id,
-                Name = category.Name,   
+                Name = category.Name,
             };
-            
+
             return View(categoryView);
         }
 
@@ -84,32 +83,38 @@ namespace MVC_Shoping_Card.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(CategoryViewModel model, IFormCollection collection)
         {
-            if(ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var dublicate = _db.GetCategoryByName(model.Name);
+
+            if (dublicate.Count > 1)
             {
-                CategoryModel category = new CategoryModel()
-                {
-                    Id = model.Id,  
-                    Name = model.Name,  
-                };
-
-                _db.EditCategory(category);
-
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("Name", "This category name already exists.");
+                return View(model);
             }
-            return View(model);
-                
+
+            CategoryModel category = new CategoryModel()
+            {
+                Id = model.Id,
+                Name = model.Name,
+            };
+
+            _db.EditCategory(category);
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: CategoryController/Delete/5
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
-            var category = _db.GetCategoryById(id).FirstOrDefault(); 
+            var category = _db.GetCategoryById(id).FirstOrDefault();
             CategoryViewModel categoryview = new CategoryViewModel()
             {
                 Id = category.Id,
-                Name = category.Name    
-            };   
+                Name = category.Name
+            };
 
             return View(categoryview);
         }
@@ -122,14 +127,14 @@ namespace MVC_Shoping_Card.Controllers
         {
             var category = _db.GetCategoryById(id).FirstOrDefault();
 
-            if(category == null)
+            if (category == null)
             {
                 return NotFound();
             }
-           
+
             _db.DeleteCategory(category.Id);
             return RedirectToAction(nameof(Index));
-            
+
 
         }
     }

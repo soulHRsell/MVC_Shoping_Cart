@@ -18,7 +18,9 @@ namespace MVC_Shoping_Card.Models
         public string ConfirmPassword { get; set; }
         [Required, EmailAddress]
         public string EmailAddress { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
         public string Country { get; set; }
         public string State { get; set; }

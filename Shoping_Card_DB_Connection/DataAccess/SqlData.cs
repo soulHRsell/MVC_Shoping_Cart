@@ -69,7 +69,7 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                   true);
         }
 
-        public void EditUserInfo(int Id, UserEditModel user)
+        public void EditUserInfo(int Id, UserModel user)
         {
             _db.SaveData<dynamic>("SP_EditUserInfo",
                                   new { Id, user.Username, user.EmailAddress, user.FirstName, user.LastName, user.Country, user.State, user.City, user.ZipCode, user.CardNumber },

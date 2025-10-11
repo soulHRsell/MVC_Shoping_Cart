@@ -2,7 +2,7 @@
 
 namespace MVC_Shoping_Card.Models
 {
-    public class UserEditViewModel
+    public class UserViewModel
     {
         [Required]
         public string Username { get; set; }
