@@ -53,6 +53,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                         true);
         }
 
+        public List<CategoryModel> GetCategoryByName(string name)
+        {
+            return _db.LoadData<CategoryModel, dynamic>("SP_GetCategoryByName",
+                                                        new { name },
+                                                        connectionStringName,
+                                                        true);
+        }
+
         public void Createuser(UserModel user)
         {
             _db.SaveData<dynamic>("dbo.SP_CreateUser",
@@ -69,10 +77,10 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                   true);
         }
 
-        public void CreateCategory(CategoryCreateModel category)
+        public void CreateCategory(string name)
         {
             _db.SaveData<dynamic>("SP_CreateNewCategory",
-                                  new { category.AdminId, category.Name },
+                                  new { name },
                                   connectionStringName,
                                   true);
         }

@@ -5,7 +5,6 @@
 -- =============================================
 CREATE PROCEDURE [dbo].[SP_CreateNewCategory] 
 	-- Add the parameters for the stored procedure here
-	@adminId int,
 	@name nvarchar(50)
 AS
 BEGIN
@@ -14,6 +13,6 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	insert into Category([Name], [AdminId]) values (@name, @adminId)
+	insert into Category([Name]) values (@name)
 
 END

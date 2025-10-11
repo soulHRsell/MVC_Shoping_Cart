@@ -36,8 +36,8 @@ namespace MVC_Shoping_Card
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();    
+            app.UseAuthorization();
 
             app.MapStaticAssets();
             app.MapControllerRoute(

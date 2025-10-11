@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using MVC_Shoping_Card.Models;
 using Shoping_Card_DB_Connection.DataAccess;
 using Shoping_Card_DB_Connection.Models;
-using System.Security.Claims;
+
 
 namespace MVC_Shoping_Card.Controllers
 {
@@ -45,21 +46,22 @@ namespace MVC_Shoping_Card.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create(CategoryCreateViewModel model)
+        public ActionResult Create(CategoryViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                CategoryCreateModel cat = new CategoryCreateModel();
-                cat.AdminId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-                cat.Name = model.Name;
-                _db.CreateCategory(cat);
+            if (!ModelState.IsValid)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            else
+            var dublicate = _db.GetCategoryByName(model.Name);  
+
+            if(dublicate.Count > 0)
             {
-                return View();
+                ModelState.AddModelError("Name", "This category name already exists.");
+                return View(model);
             }
+
+            _db.CreateCategory(model.Name);
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: CategoryController/Edit/5
