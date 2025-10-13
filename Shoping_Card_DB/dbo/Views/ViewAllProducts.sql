@@ -1,6 +1,6 @@
 ﻿CREATE VIEW dbo.ViewAllProducts
 AS
-SELECT ca.Name AS Category, p.Name, p.Amount, p.Info
+SELECT ca.Name AS Category, p.Name, p.Amount, p.Info, p.Price
 FROM     dbo.Product AS p INNER JOIN
                   dbo.Category AS ca ON p.CategoryId = ca.ID
 

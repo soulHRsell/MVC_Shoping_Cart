@@ -16,16 +16,17 @@ namespace MVC_Shoping_Card.Controllers
 
         public ActionResult Index()
         {
-            List<ProductModel> dbproducts = _db.GetProducts();
-            List<ProductsViewModel> products = new List<ProductsViewModel>();
-            for (int i = 0; i < dbproducts.Count; i++)
+            List<ProductModel> products = _db.GetProducts();
+            List<ProductsViewModel> productsView = new List<ProductsViewModel>();
+            for (int i = 0; i < products.Count; i++)
             {
                 ProductsViewModel product = new ProductsViewModel();
-                product.Category = dbproducts[i].Category;
-                product.Name = dbproducts[i].Name;
-                product.Amount = dbproducts[i].Amount;
-                product.Info = dbproducts[i].Info;
-                products.Add(product);
+                product.Category = products[i].Category;
+                product.Name = products[i].Name;
+                product.Amount = products[i].Amount;
+                product.Info = products[i].Info;
+                product.Price = products[i].Price;
+                productsView.Add(product);
             }
             return View(products);
         }

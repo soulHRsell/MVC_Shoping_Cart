@@ -72,8 +72,6 @@
     <Build Include="dbo\Tables\Category.sql" />
     <Build Include="dbo\Tables\Product.sql" />
     <Build Include="dbo\Tables\Purchase.sql" />
-    <Build Include="dbo\Tables\AdminProductSet.sql" />
-    <Build Include="dbo\Tables\AdminSupport.sql" />
     <Build Include="dbo\Views\ViewAllCategories.sql" />
     <Build Include="dbo\Views\ViewAllProducts.sql" />
     <Build Include="dbo\Stored Procedures\SP_CreateUser.sql" />
