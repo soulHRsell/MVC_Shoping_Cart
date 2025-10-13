@@ -10,6 +10,12 @@
             <h2 class="mb-4">@ViewData["title"]</h2>
 
             <div class="mb-3">
+                <label asp-for="Category"></label>
+                <input asp-for="Category" class="form-control" readonly />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
                 <label asp-for="Name"></label>
                 <input asp-for="Name" class="form-control" readonly />
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -29,14 +35,14 @@
 
             <div class="mb-3">
                 <label asp-for="Info"></label>
-                <input asp-for="Info" class="form-control" readonly />
+                <textarea asp-for="Info" placeholder="Input Product Details" class="form-control" readonly></textarea>
                 <span asp-validation-for="Info" class="text-danger"></span>
             </div>
 
             @if(User.IsInRole("Admin"))
             {
-                <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="mr-3">
-                    <button type="submit" class="btn btn-outline-alert">Edit</button>
+                <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+                    <button type="submit" class="btn btn-outline-warning">Edit</button>
                 </form>   
 
                 <a asp-action="Delete" class="btn btn-outline-danger">Delete</a>
