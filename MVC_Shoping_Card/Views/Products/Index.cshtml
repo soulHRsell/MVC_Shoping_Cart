@@ -9,6 +9,10 @@
         <div class="col-md-6">
             <h2 class="mb-4">@ViewData["title"]</h2>
 
+            @if(User.IsInRole("Admin"))
+            {
+                <a asp-action="Create" class="btn btn-outline-primary">Create Product</a>
+            }
             <table class="table">
                 <thead>
                     <tr>

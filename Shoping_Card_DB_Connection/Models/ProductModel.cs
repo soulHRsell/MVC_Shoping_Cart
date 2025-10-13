@@ -1,11 +1,12 @@
 ﻿namespace Shoping_Card_DB_Connection.Models
 {
     public class ProductModel
-    {
-        public string Category { get; set; }
+    {    
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Amount { get; set; }
         public string Info { get; set; }
         public int Price { get; set; }  
+        public int CategoryId { get; set; }
     }
 }

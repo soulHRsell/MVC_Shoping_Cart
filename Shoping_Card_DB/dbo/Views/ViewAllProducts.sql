@@ -1,8 +1,8 @@
 ﻿CREATE VIEW dbo.ViewAllProducts
 AS
-SELECT ca.Name AS Category, p.Name, p.Amount, p.Info, p.Price
-FROM     dbo.Product AS p INNER JOIN
-                  dbo.Category AS ca ON p.CategoryId = ca.ID
+SELECT p.ID, p.Name, p.Amount, p.Info, p.Price, p.CategoryId
+FROM     dbo.Product p
+
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane1', @value = N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]

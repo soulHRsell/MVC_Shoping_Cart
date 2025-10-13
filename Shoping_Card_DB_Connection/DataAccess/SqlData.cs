@@ -37,6 +37,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                         false);
         }
 
+        public List<ProductModel> GetProductByName(string name)
+        {
+            return _db.LoadData<ProductModel, dynamic>("SP_GetProductByName",
+                                                       new { name },
+                                                       connectionStringName,
+                                                       true);
+        }
+
         public List<CategoryModel> GetAllCategories()
         {
             return _db.LoadData<CategoryModel, dynamic>("select * from ViewAllCategories",
@@ -97,6 +105,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
         {
             _db.SaveData<dynamic>("SP_DeleteCategory",
                                   new { Id },
+                                  connectionStringName,
+                                  true);
+        }
+
+        public void CreateProduct(ProductModel product)
+        {
+            _db.SaveData<dynamic>("SP_CreateNewProduct",
+                                  new { product.Name, product.Amount, product.Info, product.Price, product.CategoryId },
                                   connectionStringName,
                                   true);
         }
