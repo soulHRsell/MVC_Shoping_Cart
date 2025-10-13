@@ -12,5 +12,4 @@ begin
 	insert into [Product]([Name], Amount, Info, Price, CategoryId)
 	values (@name, @amount, @info, @price, @categoryId)
 
-
 end
