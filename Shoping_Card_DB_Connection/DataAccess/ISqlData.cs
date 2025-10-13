@@ -13,6 +13,7 @@ namespace Shoping_Card_DB_Connection.DataAccess
         List<CategoryModel> GetAllCategories();
         List<CategoryModel> GetCategoryById(int Id);
         List<CategoryModel> GetCategoryByName(string name);
+        List<ProductModel> GetProductById(int Id);
         List<ProductModel> GetProductByName(string name);
         List<ProductModel> GetProducts();
         List<UserModel> GetUserById(int Id);

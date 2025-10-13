@@ -1,0 +1,59 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["title"] = $"{Model.Name}";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">@ViewData["title"]</h2>
+
+            <div class="mb-3">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" readonly />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" readonly />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Amount"></label>
+                <input asp-for="Amount" class="form-control" readonly />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Info"></label>
+                <input asp-for="Info" class="form-control" readonly />
+                <span asp-validation-for="Info" class="text-danger"></span>
+            </div>
+
+            @if(User.IsInRole("Admin"))
+            {
+                <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="mr-3">
+                    <button type="submit" class="btn btn-outline-alert">Edit</button>
+                </form>   
+
+                <a asp-action="Delete" class="btn btn-outline-danger">Delete</a>
+            }
+            else
+            {
+                <form asp-action="Purchase" asp-route-id="@Model.Id" method="post" class="mr-3">
+                    <button type="submit" class="btn btn-outline-alert">Purchase</button>
+                </form>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -88,6 +88,7 @@
     <Build Include="dbo\Stored Procedures\SP_EditCategoryById.sql" />
     <Build Include="dbo\Stored Procedures\SP_GetCategoryByName.sql" />
     <Build Include="dbo\Stored Procedures\SP_GetProductByName.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GetProductById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Shoping_Card_DB.publish.xml" />

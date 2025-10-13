@@ -1,4 +1,4 @@
-﻿@model List<ProductsViewModel>
+﻿@model List<ProductViewModel>
 
 @{
     ViewData["title"] = "Products";
@@ -27,11 +27,15 @@
                     @foreach(var product in Model)
                     {
                         <tr>
+                            
                             <td scope="row">@product.Category</td>
                             <td scope="row">@product.Name</td>
                             <td scope="row">@product.Price</td>
                             <td scope="row">@product.Amount</td>
                             <td scope="row">@product.Info</td>
+                            <td>
+                                <a asp-action="Product" asp-route-id=@product.Id>See More...</a>
+                            </td>
                         </tr>
                     }
                 </tbody>

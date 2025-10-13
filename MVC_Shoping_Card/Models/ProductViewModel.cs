@@ -1,6 +1,6 @@
 ﻿namespace MVC_Shoping_Card.Models
 {
-    public class ProductsViewModel
+    public class ProductViewModel
     {
         public int Id { get; set; } 
         public string Name { get; set; }

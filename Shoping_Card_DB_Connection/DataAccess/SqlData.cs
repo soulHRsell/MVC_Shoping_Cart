@@ -37,6 +37,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                         false);
         }
 
+        public List<ProductModel> GetProductById(int Id)
+        {
+            return _db.LoadData<ProductModel, dynamic>("SP_GetProductById",
+                                                       new { Id },
+                                                       connectionStringName,
+                                                       true);
+        }
+
         public List<ProductModel> GetProductByName(string name)
         {
             return _db.LoadData<ProductModel, dynamic>("SP_GetProductByName",

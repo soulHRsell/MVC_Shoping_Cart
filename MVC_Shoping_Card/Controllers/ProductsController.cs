@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVC_Shoping_Card.Models;
 using Shoping_Card_DB_Connection.DataAccess;
 using Shoping_Card_DB_Connection.Models;
@@ -17,10 +18,10 @@ namespace MVC_Shoping_Card.Controllers
         public ActionResult Index()
         {
             List<ProductModel> products = _db.GetProducts();
-            List<ProductsViewModel> productsView = new List<ProductsViewModel>();
+            List<ProductViewModel> productsView = new List<ProductViewModel>();
             for (int i = 0; i < products.Count; i++)
             {
-                ProductsViewModel product = new ProductsViewModel();
+                ProductViewModel product = new ProductViewModel();
                 product.Id = products[i].Id;
                 product.Category = _db.GetCategoryById(products[i].CategoryId).FirstOrDefault().Name;
                 product.Name = products[i].Name;
@@ -32,12 +33,30 @@ namespace MVC_Shoping_Card.Controllers
             return View(productsView);
         }
 
+        public ActionResult Product(int id)
+        {
+            var product = _db.GetProductById(id).FirstOrDefault();
+
+            ProductViewModel productView = new ProductViewModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Amount = product.Amount,
+                Info = product.Info,
+                Price = product.Price,
+                Category = _db.GetCategoryById(product.CategoryId).FirstOrDefault().Name,
+            };
+
+            return View(productView);   
+        }
+
         // GET: ProducsController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: ProducsController/Create
         public ActionResult Create()
         {
@@ -65,6 +84,7 @@ namespace MVC_Shoping_Card.Controllers
         // POST: ProducsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(ProductCreateViewModel model)
         {
             if(!ModelState.IsValid)
@@ -91,6 +111,7 @@ namespace MVC_Shoping_Card.Controllers
             return Redirect("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: ProducsController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -100,6 +121,7 @@ namespace MVC_Shoping_Card.Controllers
         // POST: ProducsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try

@@ -5,8 +5,8 @@ begin
 
 	set nocount on
 
-	SELECT ca.Name AS Category, p.ID, p.Name, p.Amount, p.Info, p.Price
-	FROM dbo.Product AS p INNER JOIN dbo.Category AS ca ON p.CategoryId = ca.ID
+	SELECT p.ID, p.Name, p.Amount, p.Info, p.Price, p.CategoryId
+	FROM dbo.Product p
 	WHERE LOWER(p.[Name]) = LOWER(@name) 
 
 end
