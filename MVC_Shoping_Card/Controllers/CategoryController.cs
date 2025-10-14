@@ -81,7 +81,7 @@ namespace MVC_Shoping_Card.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(CategoryViewModel model, IFormCollection collection)
+        public ActionResult Edit(CategoryViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -123,7 +123,7 @@ namespace MVC_Shoping_Card.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirm(int id)
         {
             var category = _db.GetCategoryById(id).FirstOrDefault();
 

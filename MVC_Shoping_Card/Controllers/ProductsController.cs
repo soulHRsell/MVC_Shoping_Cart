@@ -47,13 +47,7 @@ namespace MVC_Shoping_Card.Controllers
                 Category = _db.GetCategoryById(product.CategoryId).FirstOrDefault().Name,
             };
 
-            return View(productView);   
-        }
-
-        // GET: ProducsController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View(productView);
         }
 
         [Authorize(Roles = "Admin")]
@@ -63,19 +57,19 @@ namespace MVC_Shoping_Card.Controllers
             var categories = _db.GetAllCategories();
 
             List<CategoryViewModel> categoriesView = new List<CategoryViewModel>();
-            for(int i = 0; i < categories.Count; i++)
+            for (int i = 0; i < categories.Count; i++)
             {
                 CategoryViewModel category = new CategoryViewModel()
                 {
-                    Id = categories[i].Id,  
-                    Name = categories[i].Name,  
+                    Id = categories[i].Id,
+                    Name = categories[i].Name,
                 };
-                categoriesView.Add(category);   
+                categoriesView.Add(category);
             }
 
             ProductCreateViewModel productCreateViewModel = new ProductCreateViewModel()
             {
-                Categories = categoriesView,    
+                Categories = categoriesView,
             };
 
             return View(productCreateViewModel);
@@ -87,7 +81,7 @@ namespace MVC_Shoping_Card.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create(ProductCreateViewModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View(model);
 
             var dublicate = _db.GetProductByName(model.Name);
@@ -101,37 +95,78 @@ namespace MVC_Shoping_Card.Controllers
             ProductModel product = new ProductModel()
             {
                 Name = model.Name,
-                Amount = model.Amount,  
-                Info = model.Info,  
-                Price = model.Price,    
-                CategoryId = model.Category,
+                Amount = model.Amount,
+                Info = model.Info,
+                Price = model.Price,
+                CategoryId = model.CategoryId,
             };
 
             _db.CreateProduct(product);
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Admin")]
         // GET: ProducsController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var product = _db.GetProductById(id).FirstOrDefault();
+            var categories = _db.GetAllCategories();
+
+            List<CategoryViewModel> categoriesView = new List<CategoryViewModel>();
+            for (int i = 0; i < categories.Count; i++)
+            {
+                CategoryViewModel category = new CategoryViewModel()
+                {
+                    Id = categories[i].Id,
+                    Name = categories[i].Name,
+                };
+
+                categoriesView.Add(category);
+            }
+
+            ProductCreateViewModel productEdit = new ProductCreateViewModel()
+            {
+                Categories = categoriesView,
+                Id = product.Id,
+                Name = product.Name,
+                Amount = product.Amount,
+                Info = product.Info,
+                Price = product.Price,
+                CategoryId = product.CategoryId,
+            };
+
+            return View(productEdit);
         }
 
         // POST: ProducsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ProductCreateViewModel model)
         {
-            try
+            if(!ModelState.IsValid)
+                return View(model);
+
+            var dublicate = _db.GetProductByName(model.Name);
+            if(dublicate.Count > 1)
             {
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("Name", "This Product Is Already Exists");
+                return View(model); 
             }
-            catch
+
+            ProductModel saveProduct = new ProductModel()
             {
-                return View();
-            }
+                Id = model.Id,
+                Name = model.Name,
+                Amount = model.Amount,
+                Info = model.Info,
+                Price = model.Price,
+                CategoryId = model.CategoryId,
+            };
+
+            _db.EditProduct(saveProduct);
+
+            return RedirectToAction("Index");
         }
 
         // GET: ProducsController/Delete/5

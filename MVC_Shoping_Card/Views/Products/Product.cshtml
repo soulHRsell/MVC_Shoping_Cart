@@ -41,16 +41,18 @@
 
             @if(User.IsInRole("Admin"))
             {
-                <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+                <form asp-action="Edit" asp-route-id="@Model.Id" method="get" style="display:inline">
                     <button type="submit" class="btn btn-outline-warning">Edit</button>
-                </form>   
+                </form>
 
-                <a asp-action="Delete" class="btn btn-outline-danger">Delete</a>
+                <form asp-action="Delete" asp-route-id="@Model.Id" method="get" style="display:inline">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
             }
             else
             {
-                <form asp-action="Purchase" asp-route-id="@Model.Id" method="post" class="mr-3">
-                    <button type="submit" class="btn btn-outline-alert">Purchase</button>
+                <form asp-action="AddToCart" asp-route-id="@Model.Id" method="post" class="mr-3">
+                    <button type="submit" class="btn btn-outline-alert">Add To Cart</button>
                 </form>
             }
 

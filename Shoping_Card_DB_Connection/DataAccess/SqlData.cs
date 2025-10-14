@@ -124,5 +124,13 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                   connectionStringName,
                                   true);
         }
+
+        public void EditProduct(ProductModel product)
+        {
+            _db.SaveData<dynamic>("SP_EditProduct",
+                                  new { product.Id, product.Name, product.Amount, product.Info, product.CategoryId, product.Price },
+                                  connectionStringName,
+                                  true);
+        }
     }
 }

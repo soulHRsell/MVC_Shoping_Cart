@@ -11,8 +11,8 @@
 
             <form asp-action="Create" method="post">
                 <div class="md-3"> 
-                    <label asp-for="Category"></label>
-                    <select asp-for=Category class="form-select" aria-label="Default select example">
+                    <label asp-for="CategoryId"></label>
+                    <select asp-for=CategoryId class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
 
                         @foreach (var cat in Model.Categories)
