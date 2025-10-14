@@ -132,5 +132,13 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                   connectionStringName,
                                   true);
         }
+
+        public void DeleteProduct(int Id)
+        {
+            _db.SaveData<dynamic>("SP_DeleteProduct",
+                                  new { Id },
+                                  connectionStringName,
+                                  true);
+        }
     }
 }

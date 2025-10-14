@@ -8,6 +8,7 @@ namespace Shoping_Card_DB_Connection.DataAccess
         void CreateProduct(ProductModel product);
         void Createuser(UserModel user);
         void DeleteCategory(int Id);
+        void DeleteProduct(int Id);
         void EditCategory(CategoryModel category);
         void EditProduct(ProductModel product);
         void EditUserInfo(int Id, UserModel user);

@@ -90,6 +90,7 @@
     <Build Include="dbo\Stored Procedures\SP_GetProductByName.sql" />
     <Build Include="dbo\Stored Procedures\SP_GetProductById.sql" />
     <Build Include="dbo\Stored Procedures\SP_EditProduct.sql" />
+    <Build Include="dbo\Stored Procedures\SP_DeleteProduct.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Shoping_Card_DB.publish.xml" />

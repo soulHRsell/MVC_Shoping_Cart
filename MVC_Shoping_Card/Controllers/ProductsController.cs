@@ -169,25 +169,39 @@ namespace MVC_Shoping_Card.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: ProducsController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var product = _db.GetProductById(id).FirstOrDefault();
+
+            ProductViewModel productView = new ProductViewModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Amount = product.Amount,
+                Info = product.Info,
+                Price = product.Price,
+                Category = _db.GetCategoryById(product.CategoryId).FirstOrDefault().Name
+            };
+
+            return View(productView);
         }
 
         // POST: ProducsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirm(int id)
         {
-            try
+            var product = _db.GetProductById(id);
+            
+            if(product == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+            _db.DeleteProduct(id);
+            return RedirectToAction("Index");   
         }
     }
 }
