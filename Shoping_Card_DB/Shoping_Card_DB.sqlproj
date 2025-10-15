@@ -78,7 +78,6 @@
     <Build Include="dbo\Stored Procedures\SP_CreateNewProduct.sql" />
     <Build Include="dbo\Stored Procedures\SP_CreateNewCategory.sql" />
     <Build Include="dbo\Stored Procedures\SP_UserPurchase.sql" />
-    <Build Include="dbo\Stored Procedures\SP_AdminSupportSet.sql" />
     <Build Include="dbo\Views\ViewAllUsers.sql" />
     <Build Include="dbo\Stored Procedures\SP_GetUserByUsername.sql" />
     <Build Include="dbo\Stored Procedures\SP_GetUserById.sql" />
