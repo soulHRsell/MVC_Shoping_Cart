@@ -1,4 +1,4 @@
-﻿@model List<CategoryViewModel>
+﻿@model IPagedList<CategoryViewModel>
 
 @{
     ViewData["title"] = "Categories";
@@ -40,6 +40,8 @@
                 </tbody>
             </table>
 
+            @await Html.PartialAsync("_PaginationPartial", Model)
+            
         </div>
     </div>
 </div>

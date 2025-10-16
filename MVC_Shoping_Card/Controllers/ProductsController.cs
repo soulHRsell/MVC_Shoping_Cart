@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using MVC_Shoping_Card.Models;
 using Shoping_Card_DB_Connection.DataAccess;
 using Shoping_Card_DB_Connection.Models;
+using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace MVC_Shoping_Card.Controllers
 {
@@ -15,7 +17,7 @@ namespace MVC_Shoping_Card.Controllers
             _db = db;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             List<ProductModel> products = _db.GetProducts();
             List<ProductViewModel> productsView = new List<ProductViewModel>();
@@ -30,7 +32,13 @@ namespace MVC_Shoping_Card.Controllers
                 product.Price = products[i].Price;
                 productsView.Add(product);
             }
-            return View(productsView);
+
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+            var pagedProducts = productsView.ToPagedList(pageNumber, pageSize);
+
+            return View(pagedProducts);
         }
 
         public ActionResult Product(int id)

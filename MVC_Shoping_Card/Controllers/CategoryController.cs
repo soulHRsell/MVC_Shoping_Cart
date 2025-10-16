@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using MVC_Shoping_Card.Models;
 using Shoping_Card_DB_Connection.DataAccess;
 using Shoping_Card_DB_Connection.Models;
+using X.PagedList;
+using X.PagedList.Extensions;
 
 
 namespace MVC_Shoping_Card.Controllers
@@ -18,7 +21,7 @@ namespace MVC_Shoping_Card.Controllers
 
         // GET: CategoryController
         [Authorize(Roles = "Admin")]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var categories = _db.GetAllCategories();
             List<CategoryViewModel> categoriesView = new List<CategoryViewModel>();
@@ -31,7 +34,13 @@ namespace MVC_Shoping_Card.Controllers
                 };
                 categoriesView.Add(cat);
             }
-            return View(categoriesView);
+
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+            var pagedCategories = categoriesView.ToPagedList(pageNumber, pageSize);
+
+            return View(pagedCategories);
         }
 
         // GET: CategoryController/Create

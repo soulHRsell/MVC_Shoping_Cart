@@ -1,0 +1,19 @@
+﻿@model X.PagedList.IPagedList
+
+@Html.PagedListPager(
+Model,
+page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        LinkToFirstPageFormat = "<i class='bi bi-chevron-double-left'></i>",
+        LinkToPreviousPageFormat = "<i class='bi bi-chevron-left'></i>",
+        LinkToNextPageFormat = "<i class='bi bi-chevron-right'></i>",
+        LinkToLastPageFormat = "<i class='bi bi-chevron-double-right'></i>",
+        UlElementClasses = new[] { "pagination", "justify-content-center", "mt-4" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always
+    })
