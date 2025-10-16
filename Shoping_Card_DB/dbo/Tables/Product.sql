@@ -4,7 +4,7 @@
     [Amount]     INT            DEFAULT ((0)) NOT NULL,
     [Info]       NVARCHAR (200) NULL,
     [CategoryId] INT            NOT NULL,
-    [Price] INT NOT NULL, 
+    [Price] DECIMAL NOT NULL, 
     PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Product_Category] FOREIGN KEY ([CategoryId]) REFERENCES [dbo].[Category] ([ID])
 );

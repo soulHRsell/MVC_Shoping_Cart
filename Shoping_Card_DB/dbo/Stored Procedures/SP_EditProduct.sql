@@ -4,7 +4,7 @@
 	@amount int,
 	@info nvarchar(200),
 	@categoryId int,
-	@price int
+	@price decimal
 AS
 begin
 

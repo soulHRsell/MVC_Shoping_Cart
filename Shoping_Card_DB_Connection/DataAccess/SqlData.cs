@@ -53,6 +53,20 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                        true);
         }
 
+        public List<ProductModel> SearchProducts(string? name, int? categoryId, decimal? minPrice, decimal? maxPrice)
+        {
+            return _db.LoadData<ProductModel, dynamic>("SP_SearchProducts",
+                                                       new
+                                                       {
+                                                           Name = String.IsNullOrEmpty(name) ? null : name,
+                                                           CategoryId = categoryId == 0 ? null : categoryId,
+                                                           MinPrice = minPrice == 0 ? null : minPrice,
+                                                           MaxPrice = maxPrice == 0 ? null : maxPrice
+                                                       },
+                                                       connectionStringName,
+                                                       true);
+        }
+
         public List<CategoryModel> GetAllCategories()
         {
             return _db.LoadData<CategoryModel, dynamic>("select * from ViewAllCategories",

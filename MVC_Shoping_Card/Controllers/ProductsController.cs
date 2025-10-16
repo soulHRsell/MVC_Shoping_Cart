@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using MVC_Shoping_Card.Models;
 using Shoping_Card_DB_Connection.DataAccess;
 using Shoping_Card_DB_Connection.Models;
@@ -17,9 +18,22 @@ namespace MVC_Shoping_Card.Controllers
             _db = db;
         }
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(string? name, int? categoryId, decimal? minPrice, decimal? maxPrice, int? page)
         {
-            List<ProductModel> products = _db.GetProducts();
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+            List<ProductModel> products = new List<ProductModel>();
+
+            if (String.IsNullOrEmpty(name) && categoryId == 0 &&  minPrice == 0 && maxPrice == 0)
+            {
+                products = _db.GetProducts();
+            }
+            else
+            {
+                products = _db.SearchProducts(name, categoryId ?? 0, minPrice ?? 0, maxPrice ?? 0);
+            }
+
             List<ProductViewModel> productsView = new List<ProductViewModel>();
             for (int i = 0; i < products.Count; i++)
             {
@@ -33,8 +47,12 @@ namespace MVC_Shoping_Card.Controllers
                 productsView.Add(product);
             }
 
-            int pageSize = 10;
-            int pageNumber = page ?? 1;
+            // Pass the filters back to the view so they stay after submitting
+            ViewBag.Name = name;
+            ViewBag.CategoryId = categoryId;
+            ViewBag.MinPrice = minPrice;
+            ViewBag.MaxPrice = maxPrice;
+            ViewBag.Categories = _db.GetAllCategories();
 
             var pagedProducts = productsView.ToPagedList(pageNumber, pageSize);
 

@@ -2,7 +2,7 @@
 	@name nvarchar(50),
 	@amount int,
 	@info nvarchar(200),
-	@price int,
+	@price decimal,
 	@categoryId int
 as
 begin
