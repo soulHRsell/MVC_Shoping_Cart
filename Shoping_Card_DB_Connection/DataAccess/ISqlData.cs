@@ -20,6 +20,7 @@ namespace Shoping_Card_DB_Connection.DataAccess
         List<ProductModel> GetProducts();
         List<UserModel> GetUserById(int Id);
         List<UserAuthoModel> GetUserByUsername(string username);
+        List<CategoryModel> SearchCategory(string? name);
         List<ProductModel> SearchProducts(string? name, int? categoryId, decimal? minPrice, decimal? maxPrice);
     }
 }

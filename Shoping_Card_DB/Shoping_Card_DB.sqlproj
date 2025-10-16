@@ -91,6 +91,7 @@
     <Build Include="dbo\Stored Procedures\SP_EditProduct.sql" />
     <Build Include="dbo\Stored Procedures\SP_DeleteProduct.sql" />
     <Build Include="dbo\Stored Procedures\SP_SearchProducts.sql" />
+    <Build Include="dbo\Stored Procedures\SP_SearchCategory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Shoping_Card_DB.publish.xml" />

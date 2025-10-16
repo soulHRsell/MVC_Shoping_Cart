@@ -21,9 +21,19 @@ namespace MVC_Shoping_Card.Controllers
 
         // GET: CategoryController
         [Authorize(Roles = "Admin")]
-        public ActionResult Index(int? page)
+        public ActionResult Index(string? name, int? page)
         {
-            var categories = _db.GetAllCategories();
+            List<CategoryModel> categories = new List<CategoryModel>();
+
+            if (String.IsNullOrEmpty(name))
+            {
+                categories = _db.GetAllCategories();
+            }
+            else
+            {
+                categories = _db.SearchCategory(name);
+            }
+
             List<CategoryViewModel> categoriesView = new List<CategoryViewModel>();
             for (int i = 0; i < categories.Count; i++)
             {
@@ -39,6 +49,8 @@ namespace MVC_Shoping_Card.Controllers
             int pageNumber = page ?? 1;
 
             var pagedCategories = categoriesView.ToPagedList(pageNumber, pageSize);
+
+            ViewBag.Name = name;
 
             return View(pagedCategories);
         }

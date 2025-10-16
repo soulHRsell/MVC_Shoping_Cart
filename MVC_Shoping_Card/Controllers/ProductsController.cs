@@ -25,7 +25,7 @@ namespace MVC_Shoping_Card.Controllers
 
             List<ProductModel> products = new List<ProductModel>();
 
-            if (String.IsNullOrEmpty(name) && categoryId == 0 &&  minPrice == 0 && maxPrice == 0)
+            if (String.IsNullOrEmpty(name) && categoryId == null &&  minPrice == null && maxPrice == null)
             {
                 products = _db.GetProducts();
             }

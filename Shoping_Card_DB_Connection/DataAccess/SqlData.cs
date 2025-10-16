@@ -91,6 +91,14 @@ namespace Shoping_Card_DB_Connection.DataAccess
                                                         true);
         }
 
+        public List<CategoryModel> SearchCategory(string? name)
+        {
+            return _db.LoadData<CategoryModel, dynamic>("SP_SearchCategory",
+                                                        new { Name = String.IsNullOrEmpty(name) ? null : name },
+                                                        connectionStringName,
+                                                        true);
+        }
+
         public void Createuser(UserModel user)
         {
             _db.SaveData<dynamic>("dbo.SP_CreateUser",
